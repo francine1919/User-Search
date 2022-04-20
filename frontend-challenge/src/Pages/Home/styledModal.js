@@ -6,11 +6,11 @@ export const ContainerModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
+  width: 540px;
   height: 500px;
 
   p {
-    width: 314px;
+    width: 350px;
     padding: 4px;
     margin-top: 4px;
     margin-left: 140px;

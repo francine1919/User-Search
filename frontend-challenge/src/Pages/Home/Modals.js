@@ -31,7 +31,7 @@ export default function Modals() {
           overlay: { backgroundColor: "grey" },
           content: {
             color: "blue",
-            width: "500px",
+            width: "550px",
             height: "460px",
             margin: "0 auto",
             overflow: "hidden",
