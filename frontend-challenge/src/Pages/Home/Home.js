@@ -8,6 +8,9 @@ export const ContainerHome = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #5d6572;
   span {
     width: 600px;
     font-size: 16px;
@@ -30,16 +33,18 @@ export const ContainerHome = styled.div`
 const ContaineHomeTable = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 154px);
-  border: 2px solid blue;
   width: 620px;
   margin: 30px;
   justify-items: center;
 
   p {
-    border: 1px solid black;
+    /* color:grey; */
+
     width: 154px;
+    height: 50px;
     font-size: 16px;
     text-align: center;
+    border-bottom: 2px solid blue;
   }
 `;
 
@@ -48,14 +53,35 @@ const ImageLoading = styled.img`
   margin: 0 auto;
   width: 20%;
 `;
+const ContainerButton = styled.p`
+  margin-top: 18px;
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, 0.7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  outline: none;
+  padding: 8px 0.8em;
+  position: relative;
+  touch-action: manipulation;
 
+  :hover {
+    background-color: #b3d3ea;
+    color: #2c5777;
+  }
+  :focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+  }
+`;
 export default function Home() {
   const navigate = useNavigate();
   const goToDetails = (user) => {
     navigate(`/user/${user}`);
   };
 
-  const { data, isLoading,setIsModalOpen } = useContext(GlobalContext);
+  const { data, isLoading, setIsModalOpen } = useContext(GlobalContext);
   const patients = data.results?.map((patient) => {
     return (
       <p key={patient.cell}>
@@ -116,12 +142,15 @@ export default function Home() {
               <p>Actions</p>
               {data.results?.map((user) => {
                 return (
-                  <p
+                  <ContainerButton
                     key={user.cell}
-                    onClick={() => {goToDetails(user.login.uuid); setIsModalOpen(true)}}
+                    onClick={() => {
+                      goToDetails(user.login.uuid);
+                      setIsModalOpen(true);
+                    }}
                   >
                     Details
-                  </p>
+                  </ContainerButton>
                 );
               })}
             </div>

@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 const useGet = (url) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
-  const getData = () => {
-    axios
+  const getData = async() => {
+    await axios
       .get(BaseUrl + url)
       .then((res) => {
         setData(res.data);

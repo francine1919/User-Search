@@ -2,28 +2,14 @@ import Modal from "react-modal";
 import { GlobalContext } from "../../Global/GlobalContext";
 import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
+import {ContainerModal} from "./styledModal"
 Modal.setAppElement("#root");
-export const ContainerModal = styled.div`
-  border: 2px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  height: 400px;
-  p {
-    padding: 0;
-    margin: 2px;
-  }
-  img {
-    border-radius: 50%;
-    width: 150px;
-  }
-`;
+
 export default function Modals() {
   const navigate = useNavigate();
   const { user } = useParams();
   const { data, setIsModalOpen, isModalOpen } = useContext(GlobalContext);
+ 
   const findUserInfo = (loginUuid) => {
     const filter = data.results?.find((user) => {
       return user.login.uuid === loginUuid;
@@ -32,10 +18,10 @@ export default function Modals() {
   };
 
   const filter = findUserInfo(user);
-  
+
   return (
     <>
-       <Modal
+      <Modal
         isOpen={isModalOpen}
         onRequestClose={() => {
           navigate("/");
@@ -45,11 +31,11 @@ export default function Modals() {
           overlay: { backgroundColor: "grey" },
           content: {
             color: "blue",
-            width: "400px",
-            height: "400px",
+            width: "500px",
+            height: "460px",
             margin: "0 auto",
-            scrollBehavior: "unset",
             overflow: "hidden",
+            borderRadius: "60%",
           },
         }}
       >
@@ -70,7 +56,7 @@ export default function Modals() {
               {`, `}
               {filter.location.city}
             </p>
-            <p>id: {filter.id.value ? filter.id.value : " Not registered "}</p>
+            <p>id: {filter.id.value ? filter.id.value : " Not availaible "}</p>
             <Link to={"/"}>
               <button onClick={() => setIsModalOpen(false)}>Close</button>
             </Link>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
+  color: #4a4b4f;
 `;
 export const HeaderContainerTopSection = styled.div`
   height: 32px;
