@@ -3,20 +3,23 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 const useGet = (url) => {
   const [data, setData] = useState([]);
-  const getPoke = () => {
+  const [isLoading, setIsloading] = useState(true);
+  const getData = () => {
     axios
       .get(BaseUrl + url)
       .then((res) => {
-        setData(res.data.results);
-        //  console.log("oi",res.data.results);
+        setData(res.data);
+        setIsloading(!isLoading);
+        console.log("okie", res);
       })
       .catch((err) => {
+        setIsloading(!isLoading);
         console.log(err);
       });
   };
   useEffect(() => {
-    getPoke();
+    getData();
   }, []);
-  return data;
+  return { data, isLoading };
 };
 export default useGet;

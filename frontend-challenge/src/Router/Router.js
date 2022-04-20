@@ -10,7 +10,7 @@ export default function Router() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/patient/:id" element={<PatientInfo />} />
+          <Route exact path="/patient/:user" element={<PatientInfo />} />
           <Route exact path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

@@ -7,8 +7,8 @@ import { GlobalContext } from "./GlobalConxtet";
 const GlobalState = (props) => {
   //   const [data, setData] = useState([]);
 
-  const  data  = useGet("/?page=1&results=50");
-  console.log(data);
+  const  {data, isLoading}  = useGet("/?page=1&results=50");
+  // console.log(data);
   
   //   const [pokeDetails, setPokeDetails] = useState([]);
   //   const [pokedex, setPokedex] = useState([]);
@@ -52,7 +52,7 @@ const GlobalState = (props) => {
   //     getDetails();
   //   }, [data]);
   return (
-    <GlobalContext.Provider value={{data}}>{props.children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={{data,isLoading}}>{props.children}</GlobalContext.Provider>
   );
 };
 export default GlobalState;

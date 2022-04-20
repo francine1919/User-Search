@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import Header from "../../Components/Header";
 import styled from "styled-components";
 import { GlobalContext } from "../../Global/GlobalConxtet";
-
+import loading from "../../Assets/images/loading.gif";
+import { useNavigate } from "react-router-dom";
 export const ContainerHome = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +21,7 @@ export const ContainerHome = styled.div`
     background-repeat: no-repeat;
     background-position: 596px 6px;
     :hover {
-      background-color: #ddedf5;
+      background-color: #ecedef;
       border: 2px solid lightgray;
     }
   }
@@ -41,74 +42,92 @@ const ContaineHomeTable = styled.div`
     text-align: center;
   }
 `;
+
+const ImageLoading = styled.img`
+  display: block;
+  margin: 0 auto;
+  width: 20%;
+`;
+
 export default function Home() {
-  const data = useContext(GlobalContext);
-  const patients = data.data?.map((patient, index) => {
+  const navigate = useNavigate();
+  const goToDetails = (user) => {
+    navigate(`/patient/${user}`);
+  };
+
+  const { data, isLoading } = useContext(GlobalContext);
+  const patients = data.results?.map((patient) => {
     return (
-      <div key={patient.cell}>
-        <p>
-          {patient.name.first}
-          {` `}
-          {patient.name.last}
-        </p>
-      </div>
+      <p key={patient.cell}>
+        {patient.name.first}
+        {` `}
+        {patient.name.last}
+      </p>
     );
   });
-  const gender = data.data?.map((patient, index) => {
-    return (
-      <div key={patient.cell}>
-        <p>{patient.gender}</p>
-      </div>
-    );
+  const gender = data.results?.map((patient) => {
+    return <p key={patient.cell}>{patient.gender}</p>;
   });
-  const birth = data.data?.map((patient, index) => {
+  const birth = data.results?.map((patient) => {
     return (
-      <div key={patient.cell}>
-        <p>{new Date(patient.dob.date).toLocaleDateString()}</p>
-      </div>
+      <p key={patient.cell}>
+        {new Date(patient.dob.date).toLocaleDateString()}
+      </p>
     );
   });
 
   return (
     <>
       <Header />
-
-      <ContainerHome>
-        <span>
-          <p>
-            Um cidadão fez voto de desapego e pobreza. Dispôs de todos os seus
-            bens e propriedades, reservou para si apenas duas tangas.
-          </p>
-        </span>
-        <form>
-          <input type={"text"} placeholder="Searching" />
-        </form>
-
-        <ContaineHomeTable>
-          <div>
+      {isLoading ? (
+        <ImageLoading src={loading} alt="Loading three dots light blue." />
+      ) : (
+        <ContainerHome>
+          <span>
             <p>
-              Name{" "}
-              <img
-                width="10px"
-                src="https://randomuser.me/api/portraits/men/48.jpg"
-              />
+              Um cidadão fez voto de desapego e pobreza. Dispôs de todos os seus
+              bens e propriedades, reservou para si apenas duas tangas.
             </p>
-            {patients}
-          </div>
-          <div>
-            <p>Gender</p>
-            {gender}
-          </div>
-          <div>
-            <p>Birth</p>
-            {birth}
-          </div>
-          <div>
-            <p>Actions</p>
-            <p>Link</p>
-          </div>
-        </ContaineHomeTable>
-      </ContainerHome>
+          </span>
+          <form>
+            <input type={"text"} placeholder="Searching" />
+          </form>
+
+          <ContaineHomeTable>
+            <div>
+              <p>
+                Name
+                <img
+                  width="10px"
+                  src="https://randomuser.me/api/portraits/men/48.jpg"
+                />
+              </p>
+              {patients}
+            </div>
+            <div>
+              <p>Gender</p>
+              {gender}
+            </div>
+            <div>
+              <p>Birth</p>
+              {birth}
+            </div>
+            <div>
+              <p>Actions</p>
+              {data.results?.map((user) => {
+                return (
+                  <p
+                    key={user.cell}
+                    onClick={() => goToDetails(user.login.uuid)}
+                  >
+                    Details
+                  </p>
+                );
+              })}
+            </div>
+          </ContaineHomeTable>
+        </ContainerHome>
+      )}
     </>
   );
 }
