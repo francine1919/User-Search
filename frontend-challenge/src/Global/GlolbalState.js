@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BaseUrl } from "../Constants/constants";
 import useGet from "../Hooks/useGet";
-import { GlobalContext } from "./GlobalConxtet";
+import { GlobalContext } from "./GlobalContext";
 
 const GlobalState = (props) => {
   //   const [data, setData] = useState([]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const  {data, isLoading}  = useGet("/?page=1&results=50");
   // console.log(data);
   
@@ -52,7 +52,7 @@ const GlobalState = (props) => {
   //     getDetails();
   //   }, [data]);
   return (
-    <GlobalContext.Provider value={{data,isLoading}}>{props.children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={{data,isLoading,setIsModalOpen,isModalOpen}}>{props.children}</GlobalContext.Provider>
   );
 };
 export default GlobalState;

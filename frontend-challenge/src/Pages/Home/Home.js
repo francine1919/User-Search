@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Header from "../../Components/Header";
 import styled from "styled-components";
-import { GlobalContext } from "../../Global/GlobalConxtet";
+import { GlobalContext } from "../../Global/GlobalContext";
 import loading from "../../Assets/images/loading.gif";
 import { useNavigate } from "react-router-dom";
 export const ContainerHome = styled.div`
@@ -52,10 +52,10 @@ const ImageLoading = styled.img`
 export default function Home() {
   const navigate = useNavigate();
   const goToDetails = (user) => {
-    navigate(`/patient/${user}`);
+    navigate(`/user/${user}`);
   };
 
-  const { data, isLoading } = useContext(GlobalContext);
+  const { data, isLoading,setIsModalOpen } = useContext(GlobalContext);
   const patients = data.results?.map((patient) => {
     return (
       <p key={patient.cell}>
@@ -118,7 +118,7 @@ export default function Home() {
                 return (
                   <p
                     key={user.cell}
-                    onClick={() => goToDetails(user.login.uuid)}
+                    onClick={() => {goToDetails(user.login.uuid); setIsModalOpen(true)}}
                   >
                     Details
                   </p>
