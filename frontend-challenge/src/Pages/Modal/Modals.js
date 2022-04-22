@@ -2,30 +2,31 @@ import Modal from "react-modal";
 import { GlobalContext } from "../../Global/GlobalContext";
 import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {ContainerModal} from "./styledModal"
+import { ContainerModal } from "./styledModal";
 Modal.setAppElement("#root");
 
 export default function Modals() {
   const navigate = useNavigate();
   const { user } = useParams();
-  const { data, setIsModalOpen, isModalOpen } = useContext(GlobalContext);
- 
+  const { data, setIsModalOpen, isModalOpen, isLoading } =
+    useContext(GlobalContext);
+
   const findUserInfo = (loginUuid) => {
-    const filter = data.results?.find((user) => {
+    const userFound = data?.find((user) => {
       return user.login.uuid === loginUuid;
     });
-    return filter;
+    return userFound;
   };
 
-  const filter = findUserInfo(user);
+  const userFound = findUserInfo(user);
 
   return (
     <>
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => {
-          navigate("/");
           setIsModalOpen(false);
+          navigate("/");
         }}
         style={{
           overlay: { backgroundColor: "grey" },
@@ -39,24 +40,26 @@ export default function Modals() {
           },
         }}
       >
-        {filter ? (
+        {userFound ? (
           <ContainerModal>
-            <img src={filter.picture.large} />
+            <img src={userFound.picture.large} />
             <p>
-              Name: {filter.name.first}
-              {` `} {filter.name.last}
+              Name: {userFound.name.first}
+              {` `} {userFound.name.last}
             </p>
-            <p> Email: {filter.email}</p>
-            <p>Gender: {filter.gender}</p>
-            <p>Phone: {filter.cell}</p>
-            <p>Birthday: {new Date(filter.dob.date).toLocaleDateString()}</p>
-            <p>Nationality: {filter.nat}</p>{" "}
+            <p> Email: {userFound.email}</p>
+            <p>Gender: {userFound.gender}</p>
+            <p>Phone: {userFound.cell}</p>
+            <p>Birthday: {new Date(userFound.dob.date).toLocaleDateString()}</p>
+            <p>Nationality: {userFound.nat}</p>{" "}
             <p>
-              Address: {filter.location.country}
+              Address: {userFound.location.country}
               {`, `}
-              {filter.location.city}
+              {userFound.location.city}
             </p>
-            <p>id: {filter.id.value ? filter.id.value : " Not availaible "}</p>
+            <p>
+              id: {userFound.id.value ? userFound.id.value : " Not availaible "}
+            </p>
             <Link to={"/"}>
               <button onClick={() => setIsModalOpen(false)}>Close</button>
             </Link>

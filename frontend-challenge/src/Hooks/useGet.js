@@ -1,4 +1,4 @@
-import { BaseUrl } from "../Constants/constants";
+import { BaseUrl } from "../Assets/constants/constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const useGet = (url) => {
@@ -8,10 +8,9 @@ const useGet = (url) => {
     await axios
       .get(BaseUrl + url)
       .then((res) => {
-        setData(res.data);
+        setData(res.data.results);
         setIsloading(!isLoading);
-        console.log("okie", res);
-      })
+        })
       .catch((err) => {
         setIsloading(!isLoading);
         console.log(err);

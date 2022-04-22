@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   color: #4a4b4f;
 `;
 export const HeaderContainerTopSection = styled.div`
-  height: 32px;
+  height: 40px;
   background-color: #9eadba;
 `;
 export const HeaderContainerBottomSection = styled.div`
@@ -14,6 +14,7 @@ export const HeaderContainerBottomSection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  background-color: #f2f9fb;
   div {
     display: flex;
     margin: 0 10px;
@@ -23,5 +24,20 @@ export const HeaderContainerBottomSection = styled.div`
   img {
     margin: 0 10px;
     height: 60px;
+  }
+`;
+export const ContainerTimestamp = styled.div`
+  flex-direction: column;
+  p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 4px;
+    font-weight: lighter;
+    color: #9eadba;
+     }
+  img {
+    margin-top: 6px;
+    height: 50px;
+    border-radius: 50%;
   }
 `;
