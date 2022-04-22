@@ -38,7 +38,7 @@ Desenvolvedora do projeto
 
 
 ## Description
-- Small search engine to find users using a random user generator API.
+- Small search interface to find users using a random user generator API.
 
 ## Project Link
 - [Link](https://rapid-calculator.surge.sh/) - Link do projeto
