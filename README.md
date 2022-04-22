@@ -8,7 +8,7 @@
 - Página de busca para encontrar usuários usando um API gerador de usuários aleatórios.
 
 ## Link do Projeto
-- [Link](https://rapid-calculator.surge.sh/) - Link do projeto
+- [Link](http://wandering-yard.surge.sh/) - Link do projeto
 ## :hammer_and_wrench: Construído com
 
 Ferramentas que usamos para criar o nosso projeto
@@ -40,7 +40,7 @@ Desenvolvedora do projeto
 - Small search interface to find users using a random user generator API.
 
 ## Project Link
-- [Link](https://rapid-calculator.surge.sh/) - Link do projeto
+- [Link](http://wandering-yard.surge.sh/)
 ## :hammer_and_wrench: Built with
 
 Tools used for this project
