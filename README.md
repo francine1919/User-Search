@@ -1,5 +1,4 @@
 
-# User search engine
 
 <h1 align="center">
 #Interface de busca de usuários
