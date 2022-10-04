@@ -58,7 +58,7 @@ export default function Modals() {
               {userFound.location.city}
             </p>
             <p>
-              id: {userFound.id.value ? userFound.id.value : " Not availaible "}
+              id: {userFound.id.value ? userFound.id.value : " Not available "}
             </p>
             <Link to={"/"}>
               <button onClick={() => setIsModalOpen(false)}>Close</button>
